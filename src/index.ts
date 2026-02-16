@@ -1,13 +1,15 @@
 //  simplified role hierarchy for demonstration purposes
 
+import { PermissionManager } from './pm/permissionManager';
+
 const simpleRoleHierarchy = {
-  superAdmin: ["admin", "manager", "proof_reader", "editor", "user"],
-  admin: ["manager", "proof-reader", "editor", "user"],
-  manager: ["proof-reader", "editor", "sales_manager", "user"],
-  sales_manager: ["user"],
-  proof_reader: ["user"],
-  editor: ["user"],
-  premium_user: ["user"],
+  superAdmin: ['admin', 'manager', 'proof_reader', 'editor', 'user'],
+  admin: ['manager', 'proof-reader', 'editor', 'user'],
+  manager: ['proof-reader', 'editor', 'sales_manager', 'user'],
+  sales_manager: ['user'],
+  proof_reader: ['user'],
+  editor: ['user'],
+  premium_user: ['user'],
   user: [],
 };
 
@@ -18,3 +20,5 @@ const mySet = new Set(myArray);
 
 // Convert the Set back to an array
 const uniqueArray = Array.from(mySet);
+
+new PermissionManager();
