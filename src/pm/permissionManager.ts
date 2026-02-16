@@ -28,7 +28,7 @@ export class PermissionManager {
 
   /**
    * Initializes the PermissionManager with the given context.
-   * Precomputes and caches role hierarchies and permissions for fast lookup.
+   * Precompute and caches role hierarchies and permissions for fast lookup.
    * @param context The user's roles and explicit permissions
    */
   constructor(private readonly context: PermissionContext) {

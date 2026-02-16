@@ -23,6 +23,12 @@
     "typescript": "^5.9.3"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "!node_modules/**/*": [],
+    "!dist/**/*": [],
+    "!package.json": [],
+    "!package-lock.json": []
   }
 }
