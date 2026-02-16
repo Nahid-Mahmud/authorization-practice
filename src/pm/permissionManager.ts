@@ -75,6 +75,7 @@ export class PermissionManager {
         return true;
       }
     }
+
     console.log('hello');
 
     return false;
