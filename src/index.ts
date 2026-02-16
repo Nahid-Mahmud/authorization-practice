@@ -13,12 +13,21 @@ const simpleRoleHierarchy = {
   user: [],
 };
 
-const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6];
+const user = {
+  id: '123',
+  name: 'John Doe',
+  roles: ['super_admin'],
+  permissions: [],
+};
 
-// Create a Set from the array to remove duplicates
-const mySet = new Set(myArray);
+const pm = new PermissionManager({
+  roles: user.roles,
+  permissions: user.permissions,
+});
 
-// Convert the Set back to an array
-const uniqueArray = Array.from(mySet);
-
-new PermissionManager();
+// console.log(pm.hasPermission('product:delete'));
+// console.log(pm.hasPermission('product:read'));
+// console.log(pm.hasPermission('product:update'));
+// console.log(pm.hasPermission('product:create'));
+// console.log(pm.hasPermission('user:create'));
+console.log(pm.hasPermissions(['product:delete', 'product:read']));
