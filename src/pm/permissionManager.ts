@@ -9,7 +9,7 @@ export class PermissionManager {
   private readonly cachedRoleHierarchy: Map<string, Set<string>> = new Map();
   private readonly cachedRolePermissions: Map<string, Set<string>> = new Map();
 
-  constructor() {
+  constructor(private readonly context: PermissionContext) {
     Object.keys(RoleHierarchy).forEach((role) => {
       this.cachedRoleHierarchy.set(role, this.computeRoleHierarchy(role));
     });
@@ -17,8 +17,6 @@ export class PermissionManager {
     Object.keys(RoleBasedPermissions).forEach((role) => {
       this.cachedRolePermissions.set(role, this.computePermissions(role));
     });
-
-    // console.log(this.cachedRoleHierarchy);
   }
 
   private computeRoleHierarchy(role: string, visited: Set<string> = new Set()) {
@@ -64,5 +62,20 @@ export class PermissionManager {
     });
 
     return result;
+  }
+
+  public hasPermission(permission: string): boolean {
+    if (this.context.permissions.includes(permission)) {
+      return true;
+    }
+
+    for (const role of this.context.roles) {
+      const rolePermissions = this.cachedRolePermissions.get(role);
+      if (rolePermissions && rolePermissions.has(permission)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
